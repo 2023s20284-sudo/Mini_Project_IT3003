@@ -19,6 +19,8 @@ public class Room {
         private int capacity;//Acts as weight limit / size constraint per room
         private double pricePerDay;
 
+        // Added field for room operational status
+        private boolean isAvailable = true;
 
         public enum RoomType {
             SMALL, MEDIUM, LARGE
@@ -33,6 +35,7 @@ public class Room {
             this.type = type;
             this.capacity = capacity;
             this.pricePerDay = pricePerDay;
+            this.isAvailable = true; // Defaults to available when created
 
         }
 
@@ -52,5 +55,8 @@ public class Room {
         public double getPricePerDay() { return pricePerDay; }
         public void setPricePerDay(double pricePerDay) { this.pricePerDay = pricePerDay; }
 
+        // Added Getter and Setter for isAvailable
+        public boolean isAvailable() { return isAvailable; }
+        public void setAvailable(boolean available) { isAvailable = available; }
 
 }
