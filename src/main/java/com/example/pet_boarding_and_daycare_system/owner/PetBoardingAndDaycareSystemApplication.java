@@ -1,4 +1,4 @@
-package com.example.pet_boarding_and_daycare_system;
+package com.example.pet_boarding_and_daycare_system.owner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
