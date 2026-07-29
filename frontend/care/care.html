@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Care Schedule</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+    <a href="../index.html">Home</a>
+    <a href="../pet/pet.html">Pets</a>
+    <a href="../owner/owner.html">Owners</a>
+    <a href="../room/room.html">Rooms</a>
+    <a href="../booking/booking.html">Bookings</a>
+    <a href="../care/care.html">Care Schedule</a>
+    <a href="../staff/staff.html">Staff</a>
+    <a href="../review/review.html">Reviews</a>
+</nav>
+<div class="container">
+    <h1>Care Schedule</h1>
+
+    <form onsubmit="event.preventDefault(); addSchedule();">
+        <label>Activity Type</label>
+        <select id="activityType">
+            <option value="FEEDING">Feeding</option>
+            <option value="WALKING">Walking</option>
+            <option value="MEDICATION">Medication</option>
+            <option value="GROOMING">Grooming</option>
+            <option value="PLAYTIME">Playtime</option>
+        </select>
+        <label>Scheduled Time</label>
+        <input type="datetime-local" id="scheduledTime" required>
+        <label>Notes</label>
+        <input type="text" id="notes">
+        <button type="submit">Add Schedule</button>
+    </form>
+
+    <h2>All Schedules</h2>
+    <div id="scheduleList"></div>
+</div>
+
+<script src="../js/config.js"></script>
+<script src="care.js"></script>
+</body>
+</html>
