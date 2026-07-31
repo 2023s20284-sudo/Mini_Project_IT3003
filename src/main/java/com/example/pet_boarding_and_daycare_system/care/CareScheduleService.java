@@ -83,7 +83,7 @@ public class CareScheduleService {
     public List<CareSchedule> getScheduleByBooking(Long bookingId) {
         return careScheduleRepository.findByBookingId(bookingId);
     }
-    */
+
 
     // 9. Get Schedule by Staff ( after  the Staff class ready )
 
