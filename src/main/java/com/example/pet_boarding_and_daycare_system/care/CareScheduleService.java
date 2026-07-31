@@ -18,8 +18,8 @@ public class CareScheduleService {
     public CareSchedule createSchedule(CareSchedule schedule) {
 
         // if the Staff object exist ,only can do conflict check
-        //  I will un comment when Staff class ready
-        /*
+
+
         List<CareSchedule> existingSchedules = careScheduleRepository.findByStaffId(schedule.getStaff().getId());
 
         for (CareSchedule existing : existingSchedules) {
@@ -27,7 +27,7 @@ public class CareScheduleService {
                 throw new RuntimeException("This staff member already has a schedule at this time!");
             }
         }
-        */
+
 
         // Status will  PENDING default
         schedule.setStatus(ScheduleStatus.PENDING);
@@ -79,16 +79,16 @@ public class CareScheduleService {
     }
 
     //  8. Get Schedule by Booking ( after the Booking class ready )
-    /*
+
     public List<CareSchedule> getScheduleByBooking(Long bookingId) {
         return careScheduleRepository.findByBookingId(bookingId);
     }
     */
 
     // 9. Get Schedule by Staff ( after  the Staff class ready )
-    /*
+
     public List<CareSchedule> getScheduleByStaff(Long staffId) {
         return careScheduleRepository.findByStaffId(staffId);
     }
-    */
+
 }

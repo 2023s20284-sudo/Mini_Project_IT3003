@@ -11,8 +11,8 @@ public class CareSchedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // I comment these lines until Booking  and Staff classes ready
-    /*
+
+
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
@@ -20,7 +20,7 @@ public class CareSchedule {
     @ManyToOne
     @JoinColumn(name = "staff_id")
     private Staff staff;
-    */
+
 
     @Enumerated(EnumType.STRING)
     private ActivityType activityType;
@@ -32,7 +32,7 @@ public class CareSchedule {
 
     private String notes;
 
-    //  No-argument Constructor (Spring Boot requirement)
+    //  No-argument Constructor ( it is Spring Boot requirement)
     public CareSchedule() {
     }
 
