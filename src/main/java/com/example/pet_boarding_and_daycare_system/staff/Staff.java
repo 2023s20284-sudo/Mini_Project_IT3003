@@ -21,9 +21,8 @@ public class Staff{
     private LocalTime shiftStart;
     private LocalTime shiftEnd;
 
-    /*put as a comment untill push the careshedule class
      @OneToMany(mappedBy = "staff")
-     private List<CareSchedule> assignedSchedules;*/
+     private List<CareSchedule> assignedSchedules;
 
     public Staff() {
     }
