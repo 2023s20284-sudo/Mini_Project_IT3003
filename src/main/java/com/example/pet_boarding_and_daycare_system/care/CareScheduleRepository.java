@@ -7,10 +7,10 @@ import java.time.LocalDateTime;
 public interface CareScheduleRepository extends JpaRepository<CareSchedule, Long> {
 
     //  to get schedules related to Booking
-   // List<CareSchedule> findByBookingId(Long bookingId);  // I will uncomment when Booking class ready
+    List<CareSchedule> findByBookingId(Long bookingId);
 
     //  to get schedules assign for the Staff
-   // List<CareSchedule> findByStaffId(Long staffId);  // I will uncomment when staff class ready
+    List<CareSchedule> findByStaffId(Long staffId);
 
     // finally get  schedule list (from start-end time range )
     List<CareSchedule> findByScheduledTimeBetween(LocalDateTime start, LocalDateTime end);
