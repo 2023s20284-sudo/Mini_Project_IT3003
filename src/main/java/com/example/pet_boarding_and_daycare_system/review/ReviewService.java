@@ -20,6 +20,8 @@ public class ReviewService {
         existing.setRating(review.getRating());
         existing.setComment(review.getComment());
         existing.setReviewDate(review.getReviewDate());
+        existing.setBooking(review.getBooking());
+        existing.setOwner(review.getOwner());
         return reviewRepository.save(existing);
     }
 
@@ -36,7 +38,13 @@ public class ReviewService {
         return reviewRepository.findAll();
     }
 
-    // I will add getReviewsByBooking() and getReviewsByOwner() once Booking/Owner classes ready
+    public List<Review> getReviewsByBooking(Long bookingId) {
+        return reviewRepository.findByBookingId(bookingId);
+    }
+
+    public List<Review> getReviewsByOwner(Long ownerId) {
+        return reviewRepository.findByOwnerId(ownerId);
+    }
 
     public List<Review> getTopReviews(int minRating) {
         return reviewRepository.findByRatingGreaterThanEqual(minRating);

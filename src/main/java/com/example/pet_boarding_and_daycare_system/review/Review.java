@@ -1,5 +1,7 @@
 package com.example.pet_boarding_and_daycare_system.review;
 
+import com.example.pet_boarding_and_daycare_system.booking.Booking;
+import com.example.pet_boarding_and_daycare_system.owner.Owner;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -11,8 +13,6 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // I comment these lines until Booking and Owner classes ready
-    /*
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
@@ -20,12 +20,10 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Owner owner;
-    */
 
     private int rating;   // 1 - 5
     private String comment;
     private LocalDate reviewDate;
-
 
     public Review() {
     }
@@ -36,6 +34,22 @@ public class Review {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     public int getRating() {
