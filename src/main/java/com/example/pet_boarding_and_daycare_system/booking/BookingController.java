@@ -19,8 +19,7 @@ public class BookingController {
     }
 
 
-    // Uncomment this method after your teammates merge the required code
-    // (BookingStatus enum and BookingService.updateBookingStatus()).
+    // Uncomment this method after Sashini merge the code
 
     @PutMapping("/{id}/status")
     public Booking updateBookingStatus(
