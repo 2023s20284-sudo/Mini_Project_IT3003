@@ -114,7 +114,7 @@ public class BookingService {
         Booking booking = bookingRepository.findById(id)
                         .orElseThrow(() -> new RuntimeException("Booking not found"));
 
-        //booking.setStatus(status);
+        booking.setStatus(status);
         return bookingRepository.save(booking);
     }
 
