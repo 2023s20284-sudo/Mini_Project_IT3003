@@ -1,11 +1,15 @@
 package com.example.pet_boarding_and_daycare_system.booking;
+import com.example.pet_boarding_and_daycare_system.room.Room;
+import com.example.pet_boarding_and_daycare_system.room.RoomService;
+import com.example.pet_boarding_and_daycare_system.room.RoomRepository;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
-
 
 @Service
 public class BookingService {
@@ -15,12 +19,13 @@ public class BookingService {
     /*
     Room related code will be enabled after Room.java
     and RoomRepository.java are added.*/
+    @Autowired
+    private RoomService roomService;
 
     @Autowired
     private RoomRepository roomRepository;
 
     public Booking createBooking(Booking booking) {
-
 
         Room room = roomRepository.findById(
                 booking.getRoom().getId()
@@ -34,9 +39,7 @@ public class BookingService {
                 booking.getCheckOutDate()
         )) {
 
-            throw new RuntimeException(
-                    "Room is not available"
-            );
+            throw new RuntimeException("Room is not available");
         }
 
         booking.setTotalCost(
@@ -56,7 +59,6 @@ public class BookingService {
         return bookingRepository.save(booking);
     }
 
-    //
     private boolean isRoomAvailable(
             Long roomId,
             LocalDate checkIn,
@@ -101,21 +103,17 @@ public class BookingService {
                         checkIn,
                         checkOut
                 );
-        return days * room.getPricePerNight();
+        return days * room.getPricePerDay();
     }
 //
 
     public Booking updateBookingStatus(
             Long id,
             Booking.BookingStatus status
-    )
-    {Booking booking =
-                bookingRepository.findById(id)
-                        .orElseThrow(() ->
-                                new RuntimeException(
-                                        "Booking not found"
-                                )
-                        );
+    ) {
+        Booking booking = bookingRepository.findById(id)
+                        .orElseThrow(() -> new RuntimeException("Booking not found"));
+
         //booking.setStatus(status);
         return bookingRepository.save(booking);
     }
@@ -123,47 +121,24 @@ public class BookingService {
     public void cancelBooking(Long id) {
         Booking booking =
                 bookingRepository.findById(id)
-                        .orElseThrow(() ->
-                                new RuntimeException(
-                                        "Booking not found"
-                                )
-                        );
-        booking.setStatus(
-                Booking.BookingStatus.CANCELLED
-        );
+                        .orElseThrow(() -> new RuntimeException("Booking not found"));
 
-    //
+        booking.setStatus(Booking.BookingStatus.CANCELLED);
+
         bookingRepository.save(booking);
-
     }
 
     public Booking getBookingById(Long id) {
-
         return bookingRepository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException(
-                                "Booking not found"
-                        )
-                );
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
 
     }
-
     public List<Booking> getAllBookings() {
-
-
         return bookingRepository.findAll();
-
     }
-
-
-
-
 
     public List<Booking> getBookingsByOwner(Long ownerId) {
-
-
         return bookingRepository.findByPetId(ownerId);
-
     }
 
 }
