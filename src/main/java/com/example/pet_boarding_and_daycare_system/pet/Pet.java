@@ -1,6 +1,7 @@
 package com.example.pet_boarding_and_daycare_system.pet;
 
-import com.example.pet_boarding_and_daycare_system.owner.Owner;
+// TODO: Uncomment this import once Wathsala creates the Owner entity
+// import com.example.pet_boarding_and_daycare_system.owner.Owner;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,20 +23,25 @@ public class Pet {
     private String gender;
     private String medicalNotes;
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private Owner owner;
+    // TODO: Owner entity not created yet - uncomment below once it exists,
+    // and remove the temporary ownerId field.
+    // @ManyToOne
+    // @JoinColumn(name = "owner_id")
+    // private Owner owner;
+
+    // Temporary placeholder until Owner entity is ready
+    private Long ownerId;
 
     public Pet() {
     }
 
-    public Pet(String name, String breed, int age, String gender, String medicalNotes, Owner owner) {
+    public Pet(String name, String breed, int age, String gender, String medicalNotes, Long ownerId) {
         this.name = name;
         this.breed = breed;
         this.age = age;
         this.gender = gender;
         this.medicalNotes = medicalNotes;
-        this.owner = owner;
+        this.ownerId = ownerId;
     }
 
     public Long getId() {
@@ -86,11 +92,15 @@ public class Pet {
         this.medicalNotes = medicalNotes;
     }
 
-    public Owner getOwner() {
-        return owner;
+    public Long getOwnerId() {
+        return ownerId;
     }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
     }
+
+    // TODO: Once Owner entity exists, replace getOwnerId/setOwnerId above with:
+    // public Owner getOwner() { return owner; }
+    // public void setOwner(Owner owner) { this.owner = owner; }
 }
