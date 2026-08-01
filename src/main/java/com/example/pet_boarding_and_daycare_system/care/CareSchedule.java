@@ -1,4 +1,6 @@
 package com.example.pet_boarding_and_daycare_system.care;
+import com.example.pet_boarding_and_daycare_system.booking.Booking;
+import com.example.pet_boarding_and_daycare_system.staff.Staff;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
