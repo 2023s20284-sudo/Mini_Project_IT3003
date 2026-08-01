@@ -5,6 +5,11 @@ import com.example.pet_boarding_and_daycare_system.staff.Staff;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+
+
+
+
+
 @Entity
 @Table(name = "care_schedule")
 public class CareSchedule {
@@ -79,4 +84,7 @@ public class CareSchedule {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+    public Staff getStaff() {  return staff; }
+
+    public void setStaff(Staff staff) { this.staff = staff; }
 }
