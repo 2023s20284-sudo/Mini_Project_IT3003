@@ -16,8 +16,7 @@ async function loadOwnersDropdown() {
         const response = await fetch(`${API_BASE_URL}/owners`);
         if (response.ok) {
             const owners = await response.json();
-            // ID එක ownerId හෝ owner දෙකෙන් මොකක් තිබ්බත් අල්ලගනී
-            const ownerSelect = document.getElementById("ownerId") || document.getElementById("owner");
+            const ownerSelect = document.getElementById("ownerId");
 
             if (ownerSelect) {
                 ownerSelect.innerHTML = '<option value="">-- Select an Owner --</option>';
@@ -37,28 +36,25 @@ async function loadOwnersDropdown() {
 }
 
 async function addPet() {
-    const ageVal = parseInt(document.getElementById("age").value);
-    const ageUnit = document.getElementById("ageUnit").value;
-    const ownerIdVal = document.getElementById("ownerId").value;
+    const petNameEl = document.getElementById("petName");
+    const speciesEl = document.getElementById("species");
+    const breedEl = document.getElementById("breed");
+    const ageEl = document.getElementById("age");
+    const genderEl = document.getElementById("gender");
+    const ownerIdEl = document.getElementById("ownerId");
 
-    if (!ownerIdVal) {
+    if (!ownerIdEl || !ownerIdEl.value) {
         alert("Please select an owner!");
         return;
     }
 
-    // Convert age to months if unit is selected as Years
-    let finalAgeInMonths = ageVal;
-    if (ageUnit === "Years") {
-        finalAgeInMonths = ageVal * 12;
-    }
-
     const pet = {
-        name: document.getElementById("name").value,
-        breed: document.getElementById("breed").value,
-        age: finalAgeInMonths,
-        gender: document.getElementById("gender").value,
-        medicalNotes: document.getElementById("medicalNotes").value,
-        ownerId: parseInt(ownerIdVal)
+        name: petNameEl ? petNameEl.value : "",
+        species: speciesEl ? speciesEl.value : "",
+        breed: breedEl ? breedEl.value : "",
+        age: ageEl ? parseInt(ageEl.value) : 0,
+        gender: genderEl ? genderEl.value : "",
+        ownerId: parseInt(ownerIdEl.value)
     };
 
     try {
@@ -76,6 +72,7 @@ async function addPet() {
             alert("Failed to add pet!");
         }
     } catch (error) {
+        console.error("Error adding pet:", error);
         alert("Server error when adding pet!");
     }
 }
@@ -89,24 +86,15 @@ async function deletePet(id) {
 
 function displayPets(pets) {
     const container = document.getElementById("petList");
+    if (!container) return;
+
     container.innerHTML = "";
     pets.forEach(p => {
-        // Display age in Years & Months format
-        let ageDisplay = "";
-        if (p.age >= 12) {
-            const yrs = Math.floor(p.age / 12);
-            const mths = p.age % 12;
-            ageDisplay = mths > 0 ? `${yrs} yrs ${mths} mos` : `${yrs} yrs`;
-        } else {
-            ageDisplay = `${p.age} mos`;
-        }
-
         container.innerHTML += `
-            <div class="card">
-                <strong>${p.name}</strong> (${p.breed}, ${ageDisplay}, ${p.gender})<br>
-                Medical Notes: ${p.medicalNotes || "None"}<br>
-                Owner ID: ${p.ownerId}<br>
-                <button onclick="deletePet(${p.id})">Delete</button>
+            <div class="card" style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+                <strong>${p.name || "Unnamed"}</strong> (${p.species || ""}, ${p.breed || "N/A"}, Age: ${p.age || 0}, ${p.gender || ""})<br>
+                Owner ID: ${p.ownerId || "N/A"}<br>
+                <button onclick="deletePet(${p.id})" style="margin-top: 5px; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Delete</button>
             </div>
         `;
     });

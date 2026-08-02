@@ -20,20 +20,23 @@
 </nav>
 
 <div class="container">
-    <h1>Room Management</h1>
+    <h1>Room / Kennel Inventory</h1>
 
     <form onsubmit="event.preventDefault(); addRoom();">
-        <label for="roomNumber">Room Number</label>
+        <label for="roomNumber">ROOM NUMBER</label>
         <input type="text" id="roomNumber" required placeholder="e.g. R-101">
 
-        <label for="roomType">Room Type</label>
+        <label for="roomType">TYPE (SMALL / MEDIUM / LARGE)</label>
         <select id="roomType" required>
-            <option value="Large">LARGE</option>
-            <option value="Medium">MEDIUM</option>
-            <option value="Small">SMALL</option>
+            <option value="LARGE">LARGE</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="SMALL">SMALL</option>
         </select>
 
-        <label for="pricePerDay">Price Per Night (Rs)</label>
+        <label for="capacity">CAPACITY</label>
+        <input type="number" id="capacity" required placeholder="e.g. 2">
+
+        <label for="pricePerDay">PRICE PER DAY (RS)</label>
         <input type="number" step="0.01" id="pricePerDay" required placeholder="e.g. 1500">
 
         <button type="submit">Add Room</button>
