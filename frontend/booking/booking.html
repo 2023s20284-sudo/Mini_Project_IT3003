@@ -24,10 +24,14 @@
 
     <form onsubmit="event.preventDefault(); addBooking();">
         <label for="petSelect">Select Pet</label>
-        <select id="petSelect" required></select>
+        <select id="petSelect" required>
+            <option value="">-- Select a Pet --</option>
+        </select>
 
         <label for="roomSelect">Select Room</label>
-        <select id="roomSelect" required></select>
+        <select id="roomSelect" required>
+            <option value="">-- Select a Room --</option>
+        </select>
 
         <label for="startDate">Start Date</label>
         <input type="date" id="startDate" required>
