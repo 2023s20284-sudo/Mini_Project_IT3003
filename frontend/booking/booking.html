@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bookings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Management - PetCare Hub</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<nav>
-    <a href="../index.html">Home</a>
+
+<nav class="navbar">
+    <a href="../../index.html">Home</a>
     <a href="../owner/owner.html">Owners</a>
     <a href="../pet/pet.html">Pets</a>
     <a href="../room/room.html">Rooms</a>
@@ -16,18 +18,23 @@
     <a href="../staff/staff.html">Staff</a>
     <a href="../review/review.html">Reviews</a>
 </nav>
+
 <div class="container">
-    <h1>Booking / Reservation</h1>
+    <h1>Booking Management</h1>
 
     <form onsubmit="event.preventDefault(); addBooking();">
-        <label>Pet ID</label>
-        <input type="number" id="petId" required>
-        <label>Room ID</label>
-        <input type="number" id="roomId" required>
-        <label>Check-in Date</label>
-        <input type="date" id="checkInDate" required>
-        <label>Check-out Date</label>
-        <input type="date" id="checkOutDate" required>
+        <label for="petSelect">Select Pet</label>
+        <select id="petSelect" required></select>
+
+        <label for="roomSelect">Select Room</label>
+        <select id="roomSelect" required></select>
+
+        <label for="startDate">Start Date</label>
+        <input type="date" id="startDate" required>
+
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate" required>
+
         <button type="submit">Create Booking</button>
     </form>
 

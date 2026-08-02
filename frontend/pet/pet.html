@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Management - PetCare Hub</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<nav>
-    <a href="../index.html">Home</a>
+
+<nav class="navbar">
+    <a href="../../index.html">Home</a>
     <a href="../owner/owner.html">Owners</a>
     <a href="../pet/pet.html">Pets</a>
     <a href="../room/room.html">Rooms</a>
@@ -16,39 +18,36 @@
     <a href="../staff/staff.html">Staff</a>
     <a href="../review/review.html">Reviews</a>
 </nav>
+
 <div class="container">
-    <h1>Pet Profile Management</h1>
+    <h1>Pet Management</h1>
 
     <form onsubmit="event.preventDefault(); addPet();">
-        <label>Name</label>
-        <input type="text" id="name" required>
+        <label for="petName">Pet Name</label>
+        <input type="text" id="petName" required placeholder="e.g. Buddy">
 
-        <label>Breed</label>
-        <input type="text" id="breed" required>
+        <label for="species">Species</label>
+        <select id="species" required>
+            <option value="DOG">DOG</option>
+            <option value="CAT">CAT</option>
+            <option value="OTHER">OTHER</option>
+        </select>
 
-        <label>Age</label>
+        <label for="breed">Breed</label>
+        <input type="text" id="breed" placeholder="e.g. Golden Retriever">
 
-        <input type="number" id="age" required>
+        <label for="age">Age</label>
+        <input type="number" id="age" required placeholder="e.g. 2">
 
+        <label for="gender">Gender</label>
+        <select id="gender" required>
+            <option value="MALE">MALE</option>
+            <option value="FEMALE">FEMALE</option>
+        </select>
 
-        <div style="display: flex; gap: 10px;">
-            <input type="number" id="petAge" placeholder="e.g. 2" min="1" required style="flex: 2;">
-            <select id="ageUnit" style="flex: 1;">
-                <option value="Years">Years</option>
-                <option value="Months">Months</option>
-            </select>
-        </div>
-
-        <label>Gender</label>
-        <input type="text" id="gender" required>
-
-        <label>Medical Notes</label>
-        <input type="text" id="medicalNotes">
-
-        <label>Owner ID</label>
-        <label>SELECT OWNER</label>
-        <select id="ownerId" required>
-            <option value="">-- Select an Owner --</option>
+        <label for="ownerSelect">Owner</label>
+        <select id="ownerSelect" required>
+            <!-- Dynamically populated via JS -->
         </select>
 
         <button type="submit">Add Pet</button>

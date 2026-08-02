@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Staff</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management - PetCare Hub</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<nav>
-    <a href="../index.html">Home</a>
+
+<nav class="navbar">
+    <a href="../../index.html">Home</a>
     <a href="../owner/owner.html">Owners</a>
-    <a href="/frontend/pet/pet.html">Pets</a>
+    <a href="../pet/pet.html">Pets</a>
     <a href="../room/room.html">Rooms</a>
     <a href="../booking/booking.html">Bookings</a>
     <a href="../care/care.html">Care Schedule</a>
@@ -21,23 +23,23 @@
     <h1>Staff / Sitter Management</h1>
 
     <form onsubmit="event.preventDefault(); addStaff();">
-        <label>Full Name</label>
-        <input type="text" id="fullName" required>
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" required placeholder="e.g. John Doe">
 
-        <label>Role</label>
+        <label for="role">Role</label>
         <select id="role" required>
             <option value="SITTER">SITTER</option>
             <option value="VET">VET</option>
             <option value="CLEANER">CLEANER</option>
         </select>
 
-        <label>Contact</label>
-        <input type="text" id="contact" required>
+        <label for="contact">Contact</label>
+        <input type="text" id="contact" required placeholder="e.g. 0771234567">
 
-        <label>Shift Start</label>
+        <label for="shiftStart">Shift Start</label>
         <input type="time" id="shiftStart" required>
 
-        <label>Shift End</label>
+        <label for="shiftEnd">Shift End</label>
         <input type="time" id="shiftEnd" required>
 
         <button type="submit">Add Staff</button>

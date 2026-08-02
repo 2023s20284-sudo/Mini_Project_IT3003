@@ -2,36 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rooms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Management - PetCare Hub</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<nav>
-    <a href="../index.html">Home</a>
+
+<nav class="navbar">
+    <a href="../../index.html">Home</a>
     <a href="../owner/owner.html">Owners</a>
-    <a href="/frontend/pet/pet.html">Pets</a>
+    <a href="../pet/pet.html">Pets</a>
     <a href="../room/room.html">Rooms</a>
     <a href="../booking/booking.html">Bookings</a>
     <a href="../care/care.html">Care Schedule</a>
     <a href="../staff/staff.html">Staff</a>
     <a href="../review/review.html">Reviews</a>
 </nav>
+
 <div class="container">
-    <h1>Room / Kennel Inventory</h1>
+    <h1>Room Management</h1>
+
     <form onsubmit="event.preventDefault(); addRoom();">
-        <label>Room Number</label>
-        <input type="text" id="roomNumber" required>
-        <label>Type (SMALL / MEDIUM / LARGE)</label>
-        <input type="text" id="type" required>
-        <label>Capacity</label>
-        <input type="number" id="capacity" required>
-        <label>Price Per Day</label>
-        <input type="number" id="pricePerDay" required>
+        <label for="roomNumber">Room Number</label>
+        <input type="text" id="roomNumber" required placeholder="e.g. R-101">
+
+        <label for="roomType">Room Type</label>
+        <select id="roomType" required>
+            <option value="STANDARD">STANDARD</option>
+            <option value="DELUXE">DELUXE</option>
+            <option value="SUITE">SUITE</option>
+        </select>
+
+        <label for="pricePerNight">Price Per Night ($)</label>
+        <input type="number" step="0.01" id="pricePerNight" required placeholder="e.g. 50.00">
+
         <button type="submit">Add Room</button>
     </form>
+
     <h2>All Rooms</h2>
     <div id="roomList"></div>
 </div>
+
 <script src="../js/config.js"></script>
 <script src="room.js"></script>
 </body>

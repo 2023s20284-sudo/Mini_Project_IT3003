@@ -12,7 +12,7 @@ body {
 }
 
 /* ---------- NAVBAR ---------- */
-nav {
+.navbar {
     background-color: #1c3d5a;
     padding: 12px 30px;
     display: flex;
@@ -23,8 +23,8 @@ nav {
     z-index: 100;
 }
 
-/* 🐾 Logo - CSS වලින් add කරන නිසා HTML වෙනස් කරන්න ඕන නෑ */
-nav::before {
+/* 🐾 Logo */
+.navbar::before {
     content: "";
     display: inline-block;
     width: 42px;
@@ -37,7 +37,7 @@ nav::before {
     flex-shrink: 0;
 }
 
-nav a {
+.navbar a {
     color: #d8e2ea;
     text-decoration: none;
     margin-right: 22px;
@@ -48,12 +48,12 @@ nav a {
     transition: all 0.2s ease;
 }
 
-nav a:hover {
+.navbar a:hover {
     color: #ffffff;
     background-color: rgba(212,160,64,0.3);
 }
 
-/* ---------- HERO SECTION (Home page image) ---------- */
+/* ---------- HERO SECTION ---------- */
 .hero {
     display: flex;
     align-items: center;
@@ -171,7 +171,7 @@ button:active {
     transform: translateY(0);
 }
 
-/* ---------- CARDS (records) ---------- */
+/* ---------- CARDS ---------- */
 .card {
     background: #ffffff;
     padding: 18px 20px;
@@ -208,7 +208,7 @@ button:active {
     background-color: #c9302c;
 }
 
-/* ---------- STATUS BADGES (optional use) ---------- */
+/* ---------- STATUS BADGES ---------- */
 .status {
     padding: 3px 10px;
     border-radius: 12px;
@@ -220,7 +220,7 @@ button:active {
 .status.confirmed { background: #d6e9f5; color: #1c3d5a; }
 .status.cancelled { background: #f8d7da; color: #721c24; }
 
-/* ---------- TABLES (if used) ---------- */
+/* ---------- TABLES ---------- */
 table {
     width: 100%;
     border-collapse: collapse;
