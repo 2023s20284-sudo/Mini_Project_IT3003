@@ -1,5 +1,8 @@
 package com.example.pet_boarding_and_daycare_system.staff;
+<<<<<<< HEAD
 import com.example.pet_boarding_and_daycare_system.care.CareSchedule;
+=======
+>>>>>>> feature/vandana-pet-frontend-only
 
 import jakarta.persistence.*;
 import java.time.LocalTime;
@@ -22,8 +25,14 @@ public class Staff{
     private LocalTime shiftStart;
     private LocalTime shiftEnd;
 
+<<<<<<< HEAD
      @OneToMany(mappedBy = "staff")
      private List<CareSchedule> assignedSchedules;
+=======
+    /*put as a comment untill push the careshedule class
+     @OneToMany(mappedBy = "staff")
+     private List<CareSchedule> assignedSchedules;*/
+>>>>>>> feature/vandana-pet-frontend-only
 
     public Staff() {
     }

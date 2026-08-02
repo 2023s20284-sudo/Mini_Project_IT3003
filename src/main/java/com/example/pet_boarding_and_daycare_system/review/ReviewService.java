@@ -20,8 +20,11 @@ public class ReviewService {
         existing.setRating(review.getRating());
         existing.setComment(review.getComment());
         existing.setReviewDate(review.getReviewDate());
+<<<<<<< HEAD
         existing.setBooking(review.getBooking());
         existing.setOwner(review.getOwner());
+=======
+>>>>>>> feature/vandana-pet-frontend-only
         return reviewRepository.save(existing);
     }
 
@@ -38,6 +41,7 @@ public class ReviewService {
         return reviewRepository.findAll();
     }
 
+<<<<<<< HEAD
     public List<Review> getReviewsByBooking(Long bookingId) {
         return reviewRepository.findByBookingId(bookingId);
     }
@@ -45,6 +49,9 @@ public class ReviewService {
     public List<Review> getReviewsByOwner(Long ownerId) {
         return reviewRepository.findByOwnerId(ownerId);
     }
+=======
+    // I will add getReviewsByBooking() and getReviewsByOwner() once Booking/Owner classes ready
+>>>>>>> feature/vandana-pet-frontend-only
 
     public List<Review> getTopReviews(int minRating) {
         return reviewRepository.findByRatingGreaterThanEqual(minRating);
