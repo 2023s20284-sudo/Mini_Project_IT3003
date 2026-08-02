@@ -1,15 +1,15 @@
 package com.example.pet_boarding_and_daycare_system.staff;
-import com.example.pet_boarding_and_daycare_system.care.CareSchedule;
 
+import com.example.pet_boarding_and_daycare_system.care.CareSchedule;
 import jakarta.persistence.*;
 import java.time.LocalTime;
 import java.util.List;
 
 @Entity
-public class Staff{
+public class Staff {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String fullName;
@@ -22,8 +22,8 @@ public class Staff{
     private LocalTime shiftStart;
     private LocalTime shiftEnd;
 
-     @OneToMany(mappedBy = "staff")
-     private List<CareSchedule> assignedSchedules;
+    @OneToMany(mappedBy = "staff")
+    private List<CareSchedule> assignedSchedules;
 
     public Staff() {
     }
@@ -33,7 +33,7 @@ public class Staff{
     }
 
     public void setId(Long id){
-        this.id=id;
+        this.id = id;
     }
 
     public String getFullName(){
@@ -41,7 +41,7 @@ public class Staff{
     }
 
     public void setFullName(String fullName){
-        this.fullName=fullName;
+        this.fullName = fullName;
     }
 
     public StaffRole getRole(){
@@ -49,7 +49,7 @@ public class Staff{
     }
 
     public void setRole(StaffRole role) {
-        this.role=role;
+        this.role = role;
     }
 
     public String getContact(){
@@ -57,7 +57,7 @@ public class Staff{
     }
 
     public void setContact(String contact){
-        this.contact=contact;
+        this.contact = contact;
     }
 
     public LocalTime getShiftStart(){
@@ -65,7 +65,7 @@ public class Staff{
     }
 
     public void setShiftStart(LocalTime shiftStart){
-        this.shiftStart=shiftStart;
+        this.shiftStart = shiftStart;
     }
 
     public LocalTime getShiftEnd(){
@@ -73,6 +73,14 @@ public class Staff{
     }
 
     public void setShiftEnd(LocalTime shiftEnd){
-        this.shiftEnd=shiftEnd;
+        this.shiftEnd = shiftEnd;
+    }
+
+    public List<CareSchedule> getAssignedSchedules() {
+        return assignedSchedules;
+    }
+
+    public void setAssignedSchedules(List<CareSchedule> assignedSchedules) {
+        this.assignedSchedules = assignedSchedules;
     }
 }
