@@ -106,6 +106,20 @@ async function addBooking() {
     }
 }
 
+async function cancelBooking(id) {
+    if (!confirm("Are you sure you want to cancel this booking?")) return;
+    try {
+        const response = await fetch(`${API_BASE_URL}/bookings/${id}`, { method: "DELETE" });
+        if (response.ok) {
+            getAllBookings();
+        } else {
+            alert("Failed to cancel booking.");
+        }
+    } catch (error) {
+        console.error("Error cancelling booking:", error);
+    }
+}
+
 function displayBookings(bookings) {
     const container = document.getElementById("bookingList");
     if (!container) return;
@@ -116,11 +130,16 @@ function displayBookings(bookings) {
         const checkOut = b.checkOutDate || "N/A";
         const petName = b.pet ? b.pet.name : `Pet ID: ${b.petId || "N/A"}`;
         const roomNum = b.room ? b.room.roomNumber : `Room ID: ${b.roomId || "N/A"}`;
+        const status = b.status || "PENDING";
 
         container.innerHTML += `
             <div class="card" style="border: 1px solid #ccc; padding: 12px; margin-bottom: 10px; border-radius: 6px;">
                 <strong>Booking #${b.id}</strong> - ${petName} (${roomNum})<br>
-                <span>Dates: ${checkIn} to ${checkOut}</span>
+                <span>Dates: ${checkIn} to ${checkOut}</span><br>
+                <span>Status: <b>${status}</b></span>
+                <div style="margin-top: 8px;">
+                    ${status !== "CANCELLED" ? `<button onclick="cancelBooking(${b.id})" style="color: red; cursor: pointer;">Cancel Booking</button>` : ""}
+                </div>
             </div>
         `;
     });

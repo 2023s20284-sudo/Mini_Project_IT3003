@@ -100,11 +100,27 @@ function displayReviews(reviews) {
     container.innerHTML = "";
     reviews.forEach(r => {
         container.innerHTML += `
-            <div class="card">
+            <div class="card" style="border: 1px solid #ccc; padding: 12px; margin-bottom: 10px; border-radius: 6px;">
                 Rating: ${"★".repeat(r.rating)} - "${r.comment}"
+                <div style="margin-top: 8px;">
+                    <button onclick="deleteReview(${r.id})" style="color: red; cursor: pointer;">Delete</button>
+                </div>
             </div>
         `;
     });
+}
+async function deleteReview(id) {
+    if (!confirm("Are you sure you want to delete this review?")) return;
+    try {
+        const response = await fetch(`${API_BASE_URL}/reviews/${id}`, { method: "DELETE" });
+        if (response.ok) {
+            getAllReviews();
+        } else {
+            alert("Failed to delete review.");
+        }
+    } catch (error) {
+        console.error("Error deleting review:", error);
+    }
 }
 
 window.onload = function() {
