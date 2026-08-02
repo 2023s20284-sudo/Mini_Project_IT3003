@@ -1,5 +1,4 @@
 package com.example.pet_boarding_and_daycare_system.staff;
-import com.example.pet_boarding_and_daycare_system.care.CareSchedule;
 
 import com.example.pet_boarding_and_daycare_system.care.CareSchedule;
 import jakarta.persistence.*;
