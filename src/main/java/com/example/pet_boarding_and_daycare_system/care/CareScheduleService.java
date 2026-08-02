@@ -14,31 +14,19 @@ public class CareScheduleService {
     @Autowired
     private CareScheduleRepository careScheduleRepository;
 
-    //  1. Create Schedule (Time Conflict Check)
+    // 1. Create Schedule (Time Conflict Check)
     public CareSchedule createSchedule(CareSchedule schedule) {
+        if (schedule.getStaff() != null && schedule.getStaff().getId() != null) {
+            List<CareSchedule> existingSchedules = careScheduleRepository.findByStaffId(schedule.getStaff().getId());
 
-        // if the Staff object exist ,only can do conflict check
-<<<<<<< HEAD
-
-
-=======
-        //  I will un comment when Staff class ready
-        /*
->>>>>>> feature/vandana-pet-frontend-only
-        List<CareSchedule> existingSchedules = careScheduleRepository.findByStaffId(schedule.getStaff().getId());
-
-        for (CareSchedule existing : existingSchedules) {
-            if (existing.getScheduledTime().equals(schedule.getScheduledTime())) {
-                throw new RuntimeException("This staff member already has a schedule at this time!");
+            for (CareSchedule existing : existingSchedules) {
+                if (existing.getScheduledTime().equals(schedule.getScheduledTime())) {
+                    throw new RuntimeException("This staff member already has a schedule at this time!");
+                }
             }
         }
-<<<<<<< HEAD
 
-=======
-        */
->>>>>>> feature/vandana-pet-frontend-only
-
-        // Status will  PENDING default
+        // Status will be PENDING by default
         schedule.setStatus(ScheduleStatus.PENDING);
 
         return careScheduleRepository.save(schedule);
@@ -55,7 +43,7 @@ public class CareScheduleService {
         return careScheduleRepository.findAll();
     }
 
-    //  4. Update Schedule
+    // 4. Update Schedule
     public CareSchedule updateSchedule(Long id, CareSchedule updatedSchedule) {
         CareSchedule existing = getScheduleById(id);
 
@@ -79,7 +67,7 @@ public class CareScheduleService {
         careScheduleRepository.delete(schedule);
     }
 
-    //  7. Get Daily Schedule ( schedule list for a day)
+    // 7. Get Daily Schedule (schedule list for a day)
     public List<CareSchedule> getDailySchedule(LocalDate date) {
         LocalDateTime startOfDay = LocalDateTime.of(date, LocalTime.MIN);   // 00:00
         LocalDateTime endOfDay = LocalDateTime.of(date, LocalTime.MAX);     // 23:59:59
@@ -87,32 +75,13 @@ public class CareScheduleService {
         return careScheduleRepository.findByScheduledTimeBetween(startOfDay, endOfDay);
     }
 
-    //  8. Get Schedule by Booking ( after the Booking class ready )
-<<<<<<< HEAD
-
+    // 8. Get Schedule by Booking
     public List<CareSchedule> getScheduleByBooking(Long bookingId) {
         return careScheduleRepository.findByBookingId(bookingId);
     }
 
-
-    // 9. Get Schedule by Staff ( after  the Staff class ready )
-
+    // 9. Get Schedule by Staff
     public List<CareSchedule> getScheduleByStaff(Long staffId) {
         return careScheduleRepository.findByStaffId(staffId);
     }
-
-=======
-    /*
-    public List<CareSchedule> getScheduleByBooking(Long bookingId) {
-        return careScheduleRepository.findByBookingId(bookingId);
-    }
-    */
-
-    // 9. Get Schedule by Staff ( after  the Staff class ready )
-    /*
-    public List<CareSchedule> getScheduleByStaff(Long staffId) {
-        return careScheduleRepository.findByStaffId(staffId);
-    }
-    */
->>>>>>> feature/vandana-pet-frontend-only
 }
