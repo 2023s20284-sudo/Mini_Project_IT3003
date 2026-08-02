@@ -36,6 +36,7 @@ public class ReviewController {
         return reviewService.getAllReviews();
     }
 
+<<<<<<< HEAD
     @GetMapping("/booking/{bookingId}")
     public List<Review> getReviewsByBooking(@PathVariable Long bookingId) {
         return reviewService.getReviewsByBooking(bookingId);
@@ -46,6 +47,8 @@ public class ReviewController {
         return reviewService.getReviewsByOwner(ownerId);
     }
 
+=======
+>>>>>>> feature/vandana-pet-frontend-only
     @GetMapping("/top")
     public List<Review> getTopReviews(@RequestParam(defaultValue = "4") int minRating) {
         return reviewService.getTopReviews(minRating);

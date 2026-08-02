@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pets</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+    <a href="../index.html">Home</a>
+    <a href="../pet/pet.html">Pets</a>
+    <a href="../owner/owner.html">Owners</a>
+    <a href="../room/room.html">Rooms</a>
+    <a href="../booking/booking.html">Bookings</a>
+    <a href="../care/care.html">Care Schedule</a>
+    <a href="../staff/staff.html">Staff</a>
+    <a href="../review/review.html">Reviews</a>
+</nav>
+<div class="container">
+    <h1>Pet Profile Management</h1>
+
+    <form onsubmit="event.preventDefault(); addPet();">
+        <label>Name</label>
+        <input type="text" id="name" required>
+
+        <label>Breed</label>
+        <input type="text" id="breed" required>
+
+        <label>Age</label>
+<<<<<<< HEAD
+        <input type="number" id="age" required>
+
+=======
+        <div style="display: flex; gap: 10px;">
+            <input type="number" id="petAge" placeholder="e.g. 2" min="1" required style="flex: 2;">
+            <select id="ageUnit" style="flex: 1;">
+                <option value="Years">Years</option>
+                <option value="Months">Months</option>
+            </select>
+        </div>
+>>>>>>> feature/vandana-pet-frontend-only
+        <label>Gender</label>
+        <input type="text" id="gender" required>
+
+        <label>Medical Notes</label>
+        <input type="text" id="medicalNotes">
+
+        <label>Owner ID</label>
+        <label>SELECT OWNER</label>
+        <select id="ownerId" required>
+            <option value="">-- Select an Owner --</option>
+        </select>
+
+        <button type="submit">Add Pet</button>
+    </form>
+
+    <h2>All Pets</h2>
+    <div id="petList"></div>
+</div>
+
+<script src="../js/config.js"></script>
+<script src="pet.js"></script>
+</body>
+</html>

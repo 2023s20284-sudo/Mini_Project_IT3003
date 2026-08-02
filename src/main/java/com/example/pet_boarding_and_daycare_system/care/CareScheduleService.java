@@ -18,8 +18,13 @@ public class CareScheduleService {
     public CareSchedule createSchedule(CareSchedule schedule) {
 
         // if the Staff object exist ,only can do conflict check
+<<<<<<< HEAD
+
+
+=======
         //  I will un comment when Staff class ready
         /*
+>>>>>>> feature/vandana-pet-frontend-only
         List<CareSchedule> existingSchedules = careScheduleRepository.findByStaffId(schedule.getStaff().getId());
 
         for (CareSchedule existing : existingSchedules) {
@@ -27,7 +32,11 @@ public class CareScheduleService {
                 throw new RuntimeException("This staff member already has a schedule at this time!");
             }
         }
+<<<<<<< HEAD
+
+=======
         */
+>>>>>>> feature/vandana-pet-frontend-only
 
         // Status will  PENDING default
         schedule.setStatus(ScheduleStatus.PENDING);
@@ -79,6 +88,20 @@ public class CareScheduleService {
     }
 
     //  8. Get Schedule by Booking ( after the Booking class ready )
+<<<<<<< HEAD
+
+    public List<CareSchedule> getScheduleByBooking(Long bookingId) {
+        return careScheduleRepository.findByBookingId(bookingId);
+    }
+
+
+    // 9. Get Schedule by Staff ( after  the Staff class ready )
+
+    public List<CareSchedule> getScheduleByStaff(Long staffId) {
+        return careScheduleRepository.findByStaffId(staffId);
+    }
+
+=======
     /*
     public List<CareSchedule> getScheduleByBooking(Long bookingId) {
         return careScheduleRepository.findByBookingId(bookingId);
@@ -91,4 +114,5 @@ public class CareScheduleService {
         return careScheduleRepository.findByStaffId(staffId);
     }
     */
+>>>>>>> feature/vandana-pet-frontend-only
 }
