@@ -5,12 +5,12 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-    //  to get reviews related to Booking
-    // List<Review> findByBookingId(Long bookingId);  // I will uncomment when Booking class ready
 
-    //  to get reviews related to Owner
-    // List<Review> findByOwnerId(Long ownerId);  // I will uncomment when Owner class ready
+    List<Review> findByBookingId(Long bookingId);
 
-    // finally get all reviews with rating >= given value
+
+    List<Review> findByOwnerId(Long ownerId);
+
+
     List<Review> findByRatingGreaterThanEqual(int rating);
 }

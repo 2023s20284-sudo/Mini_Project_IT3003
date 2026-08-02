@@ -36,6 +36,16 @@ public class ReviewController {
         return reviewService.getAllReviews();
     }
 
+    @GetMapping("/booking/{bookingId}")
+    public List<Review> getReviewsByBooking(@PathVariable Long bookingId) {
+        return reviewService.getReviewsByBooking(bookingId);
+    }
+
+    @GetMapping("/owner/{ownerId}")
+    public List<Review> getReviewsByOwner(@PathVariable Long ownerId) {
+        return reviewService.getReviewsByOwner(ownerId);
+    }
+
     @GetMapping("/top")
     public List<Review> getTopReviews(@RequestParam(defaultValue = "4") int minRating) {
         return reviewService.getTopReviews(minRating);
