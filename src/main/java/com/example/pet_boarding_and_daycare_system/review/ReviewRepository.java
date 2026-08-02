@@ -1,26 +1,19 @@
 package com.example.pet_boarding_and_daycare_system.review;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-<<<<<<< HEAD
-
+    // Get reviews related to Booking
     List<Review> findByBookingId(Long bookingId);
 
-
+    // Get reviews related to Owner
     List<Review> findByOwnerId(Long ownerId);
 
-
-=======
-    //  to get reviews related to Booking
-    // List<Review> findByBookingId(Long bookingId);  // I will uncomment when Booking class ready
-
-    //  to get reviews related to Owner
-    // List<Review> findByOwnerId(Long ownerId);  // I will uncomment when Owner class ready
-
-    // finally get all reviews with rating >= given value
->>>>>>> feature/vandana-pet-frontend-only
+    // Get all reviews with rating >= given value
     List<Review> findByRatingGreaterThanEqual(int rating);
 }

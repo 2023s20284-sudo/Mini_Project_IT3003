@@ -1,24 +1,20 @@
 package com.example.pet_boarding_and_daycare_system.care;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
-import java.time.LocalDateTime;
+import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Repository
 public interface CareScheduleRepository extends JpaRepository<CareSchedule, Long> {
 
-    //  to get schedules related to Booking
-<<<<<<< HEAD
+    // Get schedules related to Booking
     List<CareSchedule> findByBookingId(Long bookingId);
 
-    //  to get schedules assign for the Staff
+    // Get schedules assigned for the Staff
     List<CareSchedule> findByStaffId(Long staffId);
-=======
-   // List<CareSchedule> findByBookingId(Long bookingId);  // I will uncomment when Booking class ready
 
-    //  to get schedules assign for the Staff
-   // List<CareSchedule> findByStaffId(Long staffId);  // I will uncomment when staff class ready
->>>>>>> feature/vandana-pet-frontend-only
-
-    // finally get  schedule list (from start-end time range )
+    // Get schedule list within a specific time range
     List<CareSchedule> findByScheduledTimeBetween(LocalDateTime start, LocalDateTime end);
 }
