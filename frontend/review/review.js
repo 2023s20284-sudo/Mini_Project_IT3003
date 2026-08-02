@@ -1,5 +1,6 @@
 let allOwners = [];
 let allBookings = [];
+let editingReviewId = null; // null = adding new, otherwise = editing existing
 
 async function getAllReviews() {
     const response = await fetch(`${API_BASE_URL}/reviews`);
@@ -74,41 +75,89 @@ async function addReview() {
     };
 
     try {
-        const response = await fetch(`${API_BASE_URL}/reviews`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(review)
-        });
+        if (editingReviewId) {
+            // UPDATE existing review
+            const response = await fetch(`${API_BASE_URL}/reviews/${editingReviewId}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(review)
+            });
 
-        if (response.ok) {
-            alert("Review submitted successfully! 🎉");
-            document.querySelector("form").reset();
-            getAllReviews();
+            if (response.ok) {
+                alert("Review updated successfully! ✅");
+            } else {
+                const errText = await response.text();
+                console.error("Update error:", errText);
+                alert("Failed to update review.");
+            }
+
+            cancelReviewEdit(); // reset form back to "add" mode
         } else {
-            const errText = await response.text();
-            console.error("Server Response Error:", errText);
-            alert("Failed to submit review. Check console for details.");
+            // CREATE new review
+            const response = await fetch(`${API_BASE_URL}/reviews`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(review)
+            });
+
+            if (response.ok) {
+                alert("Review submitted successfully! 🎉");
+                document.querySelector("form").reset();
+            } else {
+                const errText = await response.text();
+                console.error("Server Response Error:", errText);
+                alert("Failed to submit review. Check console for details.");
+            }
         }
+
+        getAllReviews();
     } catch (error) {
-        console.error("Network error adding review:", error);
+        console.error("Network error saving review:", error);
         alert("Server connection error!");
     }
+}
+
+function editReview(id, ownerId, bookingId, rating, comment) {
+    editingReviewId = id;
+
+    document.getElementById("ownerSelect").value = ownerId;
+    document.getElementById("bookingSelect").value = bookingId;
+    document.getElementById("rating").value = rating;
+    document.getElementById("comment").value = comment;
+
+    const submitBtn = document.querySelector("form button[type='submit']");
+    if (submitBtn) submitBtn.textContent = "Update Review";
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function cancelReviewEdit() {
+    editingReviewId = null;
+    document.querySelector("form").reset();
+    const submitBtn = document.querySelector("form button[type='submit']");
+    if (submitBtn) submitBtn.textContent = "Submit Review";
 }
 
 function displayReviews(reviews) {
     const container = document.getElementById("reviewList");
     container.innerHTML = "";
     reviews.forEach(r => {
+        const ownerId = r.owner ? r.owner.id : "";
+        const bookingId = r.booking ? r.booking.id : "";
+        const safeComment = (r.comment || "").replace(/'/g, "\\'");
+
         container.innerHTML += `
             <div class="card" style="border: 1px solid #ccc; padding: 12px; margin-bottom: 10px; border-radius: 6px;">
                 Rating: ${"★".repeat(r.rating)} - "${r.comment}"
                 <div style="margin-top: 8px;">
+                    <button onclick="editReview(${r.id}, ${ownerId}, ${bookingId}, ${r.rating}, '${safeComment}')" style="margin-right: 5px; cursor: pointer;">Edit</button>
                     <button onclick="deleteReview(${r.id})" style="color: red; cursor: pointer;">Delete</button>
                 </div>
             </div>
         `;
     });
 }
+
 async function deleteReview(id) {
     if (!confirm("Are you sure you want to delete this review?")) return;
     try {

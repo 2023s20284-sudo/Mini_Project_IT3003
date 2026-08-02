@@ -37,4 +37,8 @@ public class ReviewController {
     public List<Review> getTopReviews(@RequestParam(defaultValue = "4") int minRating) {
         return reviewService.getTopReviews(minRating);
     }
+    @PutMapping("/{id}")
+    public Review updateReview(@PathVariable Long id, @RequestBody Review review) {
+        return reviewService.updateReview(id, review);
+    }
 }
