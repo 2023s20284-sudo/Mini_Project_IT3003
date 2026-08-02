@@ -1,21 +1,10 @@
 package com.example.pet_boarding_and_daycare_system.care;
-<<<<<<< HEAD
+
 import com.example.pet_boarding_and_daycare_system.booking.Booking;
 import com.example.pet_boarding_and_daycare_system.staff.Staff;
-=======
->>>>>>> feature/vandana-pet-frontend-only
-
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-<<<<<<< HEAD
-
-
-
-
-
-=======
->>>>>>> feature/vandana-pet-frontend-only
 @Entity
 @Table(name = "care_schedule")
 public class CareSchedule {
@@ -24,13 +13,6 @@ public class CareSchedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-<<<<<<< HEAD
-
-
-=======
-    // I comment these lines until Booking  and Staff classes ready
-    /*
->>>>>>> feature/vandana-pet-frontend-only
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
@@ -38,11 +20,6 @@ public class CareSchedule {
     @ManyToOne
     @JoinColumn(name = "staff_id")
     private Staff staff;
-<<<<<<< HEAD
-
-=======
-    */
->>>>>>> feature/vandana-pet-frontend-only
 
     @Enumerated(EnumType.STRING)
     private ActivityType activityType;
@@ -54,11 +31,7 @@ public class CareSchedule {
 
     private String notes;
 
-<<<<<<< HEAD
-    //  No-argument Constructor ( it is Spring Boot requirement)
-=======
-    //  No-argument Constructor (Spring Boot requirement)
->>>>>>> feature/vandana-pet-frontend-only
+    // No-argument Constructor (Spring Boot requirement)
     public CareSchedule() {
     }
 
@@ -70,6 +43,22 @@ public class CareSchedule {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
     public ActivityType getActivityType() {
@@ -103,10 +92,4 @@ public class CareSchedule {
     public void setNotes(String notes) {
         this.notes = notes;
     }
-<<<<<<< HEAD
-    public Staff getStaff() {  return staff; }
-
-    public void setStaff(Staff staff) { this.staff = staff; }
-=======
->>>>>>> feature/vandana-pet-frontend-only
 }
