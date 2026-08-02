@@ -1,14 +1,9 @@
 package com.example.pet_boarding_and_daycare_system.care;
+
 import com.example.pet_boarding_and_daycare_system.booking.Booking;
 import com.example.pet_boarding_and_daycare_system.staff.Staff;
-
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-
-
-
-
-
 
 @Entity
 @Table(name = "care_schedule")
@@ -18,8 +13,6 @@ public class CareSchedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
@@ -27,7 +20,6 @@ public class CareSchedule {
     @ManyToOne
     @JoinColumn(name = "staff_id")
     private Staff staff;
-
 
     @Enumerated(EnumType.STRING)
     private ActivityType activityType;
@@ -39,7 +31,7 @@ public class CareSchedule {
 
     private String notes;
 
-    //  No-argument Constructor ( it is Spring Boot requirement)
+    // No-argument Constructor (Spring Boot requirement)
     public CareSchedule() {
     }
 
@@ -51,6 +43,22 @@ public class CareSchedule {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
     public ActivityType getActivityType() {
@@ -84,7 +92,4 @@ public class CareSchedule {
     public void setNotes(String notes) {
         this.notes = notes;
     }
-    public Staff getStaff() {  return staff; }
-
-    public void setStaff(Staff staff) { this.staff = staff; }
 }
