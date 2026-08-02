@@ -1,34 +1,4 @@
 async function getAllPets() {
-<<<<<<< HEAD
-    const response = await fetch(`${API_BASE_URL}/pets`);
-    const pets = await response.json();
-    displayPets(pets);
-}
-
-async function addPet() {
-    const pet = {
-        name: document.getElementById("name").value,
-        breed: document.getElementById("breed").value,
-        age: parseInt(document.getElementById("age").value),
-        gender: document.getElementById("gender").value,
-        medicalNotes: document.getElementById("medicalNotes").value,
-        ownerId: parseInt(document.getElementById("ownerId").value)
-    };
-
-    await fetch(`${API_BASE_URL}/pets`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(pet)
-    });
-
-    document.querySelector("form").reset();
-    getAllPets();
-}
-
-async function deletePet(id) {
-    await fetch(`${API_BASE_URL}/pets/${id}`, { method: "DELETE" });
-    getAllPets();
-=======
     try {
         const response = await fetch(`${API_BASE_URL}/pets`);
         if (response.ok) {
@@ -40,24 +10,26 @@ async function deletePet(id) {
     }
 }
 
-// loading owners and crate dropdown
+// Load owners and populate the dropdown menu
 async function loadOwnersDropdown() {
     try {
         const response = await fetch(`${API_BASE_URL}/owners`);
         if (response.ok) {
             const owners = await response.json();
-            const ownerSelect = document.getElementById("ownerId");
+            // ID එක ownerId හෝ owner දෙකෙන් මොකක් තිබ්බත් අල්ලගනී
+            const ownerSelect = document.getElementById("ownerId") || document.getElementById("owner");
 
-            ownerSelect.innerHTML = '<option value="">-- Select an Owner --</option>';
+            if (ownerSelect) {
+                ownerSelect.innerHTML = '<option value="">-- Select an Owner --</option>';
 
-            owners.forEach(owner => {
-                const option = document.createElement("option");
-                option.value = owner.id;
-                // Auto taken Backend owner object name/id
-                const ownerName = owner.name || owner.fullName || "Owner";
-                option.textContent = `${ownerName} (ID: ${owner.id})`;
-                ownerSelect.appendChild(option);
-            });
+                owners.forEach(owner => {
+                    const option = document.createElement("option");
+                    option.value = owner.id;
+                    const ownerName = owner.name || owner.fullName || "Owner";
+                    option.textContent = `${ownerName} (ID: ${owner.id})`;
+                    ownerSelect.appendChild(option);
+                });
+            }
         }
     } catch (error) {
         console.error("Error loading owners dropdown:", error);
@@ -74,7 +46,7 @@ async function addPet() {
         return;
     }
 
-    // if the Age unit is Years, converted to months (Backend is integer )
+    // Convert age to months if unit is selected as Years
     let finalAgeInMonths = ageVal;
     if (ageUnit === "Years") {
         finalAgeInMonths = ageVal * 12;
@@ -83,7 +55,7 @@ async function addPet() {
     const pet = {
         name: document.getElementById("name").value,
         breed: document.getElementById("breed").value,
-        age: finalAgeInMonths, // මාස වලින් ගණනය කළ අගය backend එකට යයි
+        age: finalAgeInMonths,
         gender: document.getElementById("gender").value,
         medicalNotes: document.getElementById("medicalNotes").value,
         ownerId: parseInt(ownerIdVal)
@@ -113,19 +85,13 @@ async function deletePet(id) {
         await fetch(`${API_BASE_URL}/pets/${id}`, { method: "DELETE" });
         getAllPets();
     }
->>>>>>> feature/vandana-pet-frontend-only
 }
 
 function displayPets(pets) {
     const container = document.getElementById("petList");
     container.innerHTML = "";
     pets.forEach(p => {
-<<<<<<< HEAD
-        container.innerHTML += `
-            <div class="card">
-                <strong>${p.name}</strong> (${p.breed}, ${p.age} yrs, ${p.gender})<br>
-=======
-        // Months වලින් තියෙන Age එක Years & Months විදිහට Display කිරීම
+        // Display age in Years & Months format
         let ageDisplay = "";
         if (p.age >= 12) {
             const yrs = Math.floor(p.age / 12);
@@ -138,7 +104,6 @@ function displayPets(pets) {
         container.innerHTML += `
             <div class="card">
                 <strong>${p.name}</strong> (${p.breed}, ${ageDisplay}, ${p.gender})<br>
->>>>>>> feature/vandana-pet-frontend-only
                 Medical Notes: ${p.medicalNotes || "None"}<br>
                 Owner ID: ${p.ownerId}<br>
                 <button onclick="deletePet(${p.id})">Delete</button>
@@ -147,12 +112,8 @@ function displayPets(pets) {
     });
 }
 
-<<<<<<< HEAD
-window.onload = getAllPets;
-=======
-// Page එක load වෙනකොට Pets list එකයි Owners Dropdown එකයි load වෙනවා
+// Load Pets list and Owners Dropdown on page load
 window.onload = function() {
     getAllPets();
     loadOwnersDropdown();
 };
->>>>>>> feature/vandana-pet-frontend-only
