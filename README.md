@@ -97,7 +97,7 @@ Mini_Project_IT3003/
 
 1. Clone the repository
    ```bash
-   git clone <your-repo-url>
+   git clone <team-repo-url>
    cd Mini_Project_IT3003
    ```
 
@@ -113,7 +113,7 @@ Mini_Project_IT3003/
    or run `PetBoardingAndDaycareSystemApplication.java` directly from IntelliJ.
 
 4. Open the frontend
-   - Open `index.html` in your browser, or serve it through a local server, depending on how your team set up the frontend-backend connection.
+   - Open `index.html` in browser, or serve it through a local server, depending on how  team set up the frontend-backend connection.
 
 5. The backend will start on the default port (usually `http://localhost:8080`)
 
