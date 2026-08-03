@@ -22,8 +22,8 @@ public class Owner {
 
     private String address;
 
-    // @OneToMany(mappedBy = "owner")
-    // private List<Pet> pets;
+
+
 
     public Owner() {
     }

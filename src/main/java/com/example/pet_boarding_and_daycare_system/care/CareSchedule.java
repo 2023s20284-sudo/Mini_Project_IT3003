@@ -31,7 +31,7 @@ public class CareSchedule {
 
     private String notes;
 
-    // No-argument Constructor (Spring Boot requirement)
+
     public CareSchedule() {
     }
 

@@ -16,9 +16,9 @@ public class BookingService {
 
     @Autowired
     private BookingRepository bookingRepository;
-    /*
-    Room related code will be enabled after Room.java
-    and RoomRepository.java are added.*/
+
+
+
     @Autowired
     private RoomService roomService;
 

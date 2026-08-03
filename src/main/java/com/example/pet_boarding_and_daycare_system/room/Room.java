@@ -2,7 +2,7 @@ package com.example.pet_boarding_and_daycare_system.room;
 
 import jakarta.persistence.*;
 
-//marks this class as a database table blueprint
+
 @Entity
 @Table(name = "rooms") //Spring will default to naming the database table room (taking the class name in lowercase)
 public class Room {
@@ -16,7 +16,7 @@ public class Room {
         @Enumerated(EnumType.STRING)
         private RoomType type; // SMALL, MEDIUM, LARGE
 
-        private int capacity;//Acts as weight limit / size constraint per room
+        private int capacity;
         private double pricePerDay;
 
         // Added field for room operational status

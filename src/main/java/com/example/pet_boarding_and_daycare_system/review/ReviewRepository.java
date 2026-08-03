@@ -14,6 +14,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     // Get reviews related to Owner
     List<Review> findByOwnerId(Long ownerId);
 
-    // Get all reviews with rating >= given value
+    // Get all reviews with rating
     List<Review> findByRatingGreaterThanEqual(int rating);
 }

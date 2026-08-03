@@ -1,8 +1,4 @@
 package com.example.pet_boarding_and_daycare_system.pet;
-
-// TODO: Uncomment this import once Wathsala creates the Owner entity
-// import com.example.pet_boarding_and_daycare_system.owner.Owner;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,13 +19,6 @@ public class Pet {
     private String gender;
     private String medicalNotes;
 
-    // TODO: Owner entity not created yet - uncomment below once it exists,
-    // and remove the temporary ownerId field.
-    // @ManyToOne
-    // @JoinColumn(name = "owner_id")
-    // private Owner owner;
-
-    // Temporary placeholder until Owner entity is ready
     private Long ownerId;
 
     public Pet() {
@@ -100,7 +89,4 @@ public class Pet {
         this.ownerId = ownerId;
     }
 
-    // TODO: Once Owner entity exists, replace getOwnerId/setOwnerId above with:
-    // public Owner getOwner() { return owner; }
-    // public void setOwner(Owner owner) { this.owner = owner; }
 }

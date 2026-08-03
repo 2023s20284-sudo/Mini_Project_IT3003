@@ -19,7 +19,7 @@ public class BookingController {
     }
 
 
-    // Uncomment this method after Sashini merge the code
+
 
     @PutMapping("/{id}/status")
     public Booking updateBookingStatus(

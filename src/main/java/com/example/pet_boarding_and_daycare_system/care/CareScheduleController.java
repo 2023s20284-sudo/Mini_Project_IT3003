@@ -49,7 +49,7 @@ public class CareScheduleController {
         careScheduleService.deleteSchedule(id);
     }
 
-    // Get daily schedule (e.g. /api/care-schedules/daily?date=2026-08-01)
+    // Get daily schedule
     @GetMapping("/daily")
     public List<CareSchedule> getDailySchedule(@RequestParam("date") String date) {
         LocalDate localDate = LocalDate.parse(date);
